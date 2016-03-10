@@ -1,0 +1,12 @@
+public class Solution {
+    public int singleNumber(int[] nums) {
+        int outnum=0;
+        for(int i=0;i<nums.length;i++){
+            outnum^=nums[i];
+        }
+        
+        return outnum;
+		//System.out.println(outnum);
+        
+    }
+}
