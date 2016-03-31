@@ -1,0 +1,35 @@
+public class Solution {
+    public boolean isAnagram(String s, String t) {
+        char[] str_s = s.toCharArray();
+	    char[] str_t = t.toCharArray();
+	    
+	    if(str_s.length!=str_t.length){
+	    	return false;
+	    	
+	    }
+	    else if(str_s.length==0&&str_t.length==0){
+	        return true;
+	    }
+	    else{
+	    	int[] num_s = new int[26];
+		    int[] num_t = new int[26];
+		    for(int i=0;i<str_s.length;i++){
+		    	byte b_s=(byte)str_s[i];
+		    	byte b_t=(byte)str_t[i];
+		    	num_s[b_s-97]++;
+		    	num_t[b_t-97]++;
+		    }
+	    	
+		    for(int i=0;i<num_s.length;i++){
+		    	num_t[i]=Math.abs(num_t[i]-num_s[i]);
+		    }
+		    
+		    int sum=0;
+		    for(int i=0;i<num_s.length;i++){
+		    	sum=sum+num_t[i];
+		    }
+		    return sum!=0 ? false : true;
+	    }
+        
+    }
+}

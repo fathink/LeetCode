@@ -1,0 +1,25 @@
+public class Solution {
+    public int majorityElement(int[] nums) {
+        Set<Integer> set = new HashSet<Integer>();
+	    Map<Integer, Integer> map=new HashMap<Integer, Integer>();
+	    for(int num:nums){
+	    	if(set.add(num)){
+	    		map.put(num, 1);
+	    	}
+	    	else{
+	    		int count=map.get(num);
+	    		map.put(num, count+1);
+	    	}
+	    }
+	    //遍历map，找出最大值对应的键值
+	    Integer temp=0,keynum=0;
+	    for(Map.Entry entry:map.entrySet() ){
+	    	
+	    	if((Integer) entry.getValue()>temp){
+	    		temp = (Integer) entry.getValue();
+	    		keynum=(Integer) entry.getKey();
+	    	}
+	    }
+	    return keynum;
+    }
+}
