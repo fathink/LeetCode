@@ -1,0 +1,27 @@
+public class Solution {
+    public int findDuplicate(int[] nums) {
+        int min=0,max=nums.length;
+		
+		
+		while(min!=max){
+			int mid=min+(max-min)/2;
+			int cnt=0;
+			
+			//计算数组有多少小于中间那个数
+			for(int i=0;i<nums.length;i++){
+				if(nums[i]<=mid){
+					cnt++;
+				}
+			}
+			
+			//如果小于等于中间数的数量大于中间数，说明重复的数出现在中间数前
+			if(cnt>mid){
+				max=mid;
+			}
+			else{
+				min=mid+1;
+			}
+		}
+		return min;
+    }
+}

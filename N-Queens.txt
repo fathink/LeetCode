@@ -1,0 +1,63 @@
+public class Solution {
+    public List<List<String>> solveNQueens(int n) {
+        List<List<String>> results=new ArrayList<List<String>>();
+        int[] queenList=new int[n];
+        placeQueen(queenList,0,n,results);
+        return results;
+    }
+    
+    //递归解决皇后放置问题
+    public void placeQueen(int[] queenList,int row,int n,List<List<String>> results){
+        if(row==n){
+            StringBuilder[] sol=new StringBuilder[n];
+            
+            //初始化sol
+            for(int i=0;i<n;i++){
+                sol[i]=new StringBuilder();
+                for(int j=0;j<n;j++){
+                    sol[i].append(".");
+                }
+            }
+            
+            //对应的位置放置皇后
+            for(int i=0;i<n;i++){
+                sol[i].setCharAt(queenList[i],'Q');
+            }
+            List<String> s=new ArrayList<String>();
+            for(int i=0;i<n;i++){
+                s.add(sol[i].toString());
+            }
+            results.add(s);
+        }
+        
+        //开始查找
+        for(int col=0;col<n;col++){
+            if(isSafe(queenList,row,col)){
+                queenList[row]=col;
+                placeQueen(queenList,row+1,n,results);
+            }
+        }
+    }
+    
+    public boolean isSafe(int[] queenList,int row,int col){
+        for(int preRow=0;preRow<row;preRow++){
+            int preCol=queenList[preRow];
+            //判断行
+            if(preRow==row){
+                return false;
+            }
+            //判断列
+            if(preCol==col){
+                return false;
+            }
+            //判断主对角线
+            if(row-preRow==col-preCol){
+                return false;
+            }
+            if(preRow+preCol==row+col){
+                return false;
+            }
+        }
+        return true;
+    }
+}

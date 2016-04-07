@@ -1,0 +1,28 @@
+public class Solution {
+    public int maxProduct(String[] words) {
+        if(words==null){
+            return 0;
+        }
+        int len=words.length;
+		int[] value=new int[len];
+		for(int i=0;i<len;i++){
+			String temp=words[i];
+			value[i]=0;
+			for(int j=0;j<temp.length();j++){
+				value[i]|=1<<(temp.charAt(j)-'a'); //int类型32位，从右往左标记，第一位a，第二位b,...，出现的位置置1
+			}
+		}
+		
+		int maxLength=0;
+		for(int i=0;i<len;i++){
+			for(int j=0;j<len;j++){
+				if((value[i]&value[j])==0 && (words[i].length()*words[j].length()>maxLength)){
+					maxLength=words[i].length()*words[j].length();
+				}
+			}
+		}
+		
+		return maxLength;
+	}
+    
+}
