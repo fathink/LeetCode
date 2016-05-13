@@ -1,0 +1,16 @@
+public class Solution {
+    public String reverseString(String s) {
+        char[] sChar=s.toCharArray();
+        for(int i=0,j=sChar.length-1;i<=j;i++,j--){
+            char temp=sChar[i];
+            sChar[i]=sChar[j];
+            sChar[j]=temp;
+            
+        }
+        StringBuffer res = new StringBuffer();
+        for(int i=0;i<sChar.length;i++){
+            res.append(String.valueOf(sChar[i]));
+        }
+        return String.valueOf(res);
+    }
+}

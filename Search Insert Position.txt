@@ -1,0 +1,20 @@
+public class Solution {
+    public int searchInsert(int[] nums, int target) {
+		int temp=Integer.MAX_VALUE;
+		int index=0,num=nums[0];
+		for(int i=0;i<nums.length;i++){
+			if(temp>Math.abs(nums[i]-target)){ //找出目标值和数组中国元素绝对值差最小的数
+				temp=Math.abs(nums[i]-target);
+				index=i;
+				num=nums[i];
+			}
+		}
+		
+		if(target<=num){
+			return index;
+		}
+		else{
+			return index+1;
+		}
+    }
+}

@@ -1,0 +1,56 @@
+public class Solution {
+    public String reverseVowels(String s) {
+        char[] sChar=s.toCharArray();
+        boolean flag_i=false;
+		boolean flag_j=false;
+		//定义两个指针，i从左往右找元音字母，一旦找到元音字母，设置flag_i为1
+		//j从右往左找元音字母，一旦找到元音字母，设置flag_j为1,当flag_i和flag_j
+		//同时为1时，交换两个元音字母
+		String vowels="AaEeIiOoUu";
+		for(int i=0,j=sChar.length-1;i<=j;){
+			if(!flag_i){
+				if(isVowel(sChar[i])){
+					flag_i=true;
+				}
+				else{
+					i++;
+				}
+			}
+			
+			if(!flag_j){
+				if(isVowel(sChar[j])){
+					flag_j=true;
+				}
+				else{
+					j--;
+				}
+			}
+			
+			if(flag_i&&flag_j){
+				char temp=sChar[i];
+				sChar[i]=sChar[j];
+				sChar[j]=temp;
+				flag_i=false;
+				flag_j=false;
+				i++;j--;
+			}
+		}
+		
+		StringBuffer res=new StringBuffer();
+		for(int i=0;i<sChar.length;i++){
+			res.append(String.valueOf(sChar[i]));
+		}
+		return String.valueOf(res);
+    }
+    public boolean isVowel(char v){
+		boolean flag=false;
+		char[] vowels={'A','a','E','e','I','i','O','o','U','u'};
+		for(int i=0;i<vowels.length;i++){
+			if(vowels[i]==v){
+				flag=true;
+				break;
+			}
+		}
+		return flag;
+	}
+}

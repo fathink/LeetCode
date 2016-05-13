@@ -1,0 +1,14 @@
+public class Solution {
+    public int singleNumber(int[] nums) {
+        if(nums==null) return -1;
+        int[] array=new int[32]; //存储数组中每一个元素在32位中每位出现的次数
+        int res=0;
+        for(int i=0;i<32;i++){
+            for(int j=0;j<nums.length;j++){
+                array[i]+=(nums[j]>>i)&1;
+            }
+            res|=array[i]%3<<i;
+        }
+        return res;
+    }
+}

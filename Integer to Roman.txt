@@ -1,0 +1,105 @@
+public class Solution {
+    public String intToRoman(int num) {
+		Stack<Integer> stack=new Stack<Integer>();
+		int n=num;
+		while(n!=0){
+			stack.push(n%10);
+			n=n/10;
+		}
+		
+		int m;
+		int len=stack.size();
+		String str1="";
+		String str2="";
+		String str3="";
+		String str4="";
+		for(int i=len;i>0;i--){
+			m=stack.pop();
+			if(i==4){
+				for(int j=0;j<m;j++){
+					str4=str4+"M";					
+				}
+			}
+			if(i==3){
+				if(m>=1&&m<=3){
+					for(int j=0;j<m;j++){
+						str3=str3+"C";
+					}
+				}
+				else if(m==4){
+					str3=str3+"CD";
+				}
+				else if(m==5){
+					str3=str3+"D";
+				}
+				else if(m>5&&m<9){
+					str3=str3+"D";
+					for(int j=0;j<m-5;j++){
+						str3=str3+"C";
+					}
+				}
+				else if(m==9){
+					str3="CM";
+				}
+				else{
+					str3="";
+				}
+			}
+			if(i==2){
+				if(m>=1&&m<=3){
+					for(int j=0;j<m;j++){
+						str2=str2+"X";
+					}
+				}
+				else if(m==4){
+					str2=str2+"XL";
+				}
+				else if(m==5){
+					str2=str2+"L";
+				}
+				else if(m>5&&m<9){
+					str2=str2+"L";
+					for(int j=0;j<m-5;j++){
+						str2=str2+"X";
+					}
+				}
+				else if(m==9){
+					str2="XC";
+				}
+				else{
+					str2="";
+				}
+				
+			}
+			if(i==1){
+				if(m>=1&&m<=3){
+					for(int j=0;j<m;j++){
+						str1=str1+"I";
+					}
+				}
+				else if(m==4){
+					str1=str1+"IV";
+				}
+				else if(m==5){
+					str1=str1+"V";
+				}
+				else if(m>5&&m<9){
+					str1=str1+"V";
+					for(int j=0;j<m-5;j++){
+						str1=str1+"I";
+					}
+				}
+				else if(m==9){
+					str1="IX";
+				}
+				else{
+					str1="";
+				}
+			}
+		}
+		
+
+		String res=str4+str3+str2+str1;
+		return res;
+    }
+}

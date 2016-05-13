@@ -1,0 +1,46 @@
+public class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> results = new ArrayList<String>();
+		List<String> temp = new ArrayList<String>();
+		int count=0;
+		StringBuffer newComb=new StringBuffer();
+		results.add("()");
+	
+		if(n==1){
+			return results;
+		}
+		else{
+			for(int k=1;k<n;k++){
+				for(int i=0;i<results.size();i++){
+				    //在n-1的每个结果前面增加（）
+					count=0;
+					newComb=new StringBuffer(results.get(i));
+					newComb.insert(0,')');
+					newComb.insert(0,'(');
+					temp.add(newComb.toString());
+					
+					//在n-1剩余的结果中，将已配对好的位置加入“)”,然后在首部加入“(”
+					char[] res=results.get(i).toCharArray();
+					for(int j=0;j<results.get(0).length();j++){
+						if(res[j]=='('){
+							count++;
+						}
+						else{
+							count--;
+						}
+						if(count==0){
+							newComb=new StringBuffer(results.get(i));
+							newComb.insert(j,')');
+							newComb.insert(0,'(');
+							temp.add(newComb.toString());
+						}
+					}
+				}
+				results.clear();
+				results.addAll(temp);
+				temp.clear();
+			}
+		}
+		return results;
+    }
+}
