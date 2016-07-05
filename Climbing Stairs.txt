@@ -1,0 +1,14 @@
+public class Solution {
+    public int climbStairs(int n) {
+        //T(n)=T(n-1)+T(n-2)
+        int T0=1,T1=1;
+        for(int i=1;i<n;i++){
+            int temp=T0;
+            T0=T1;
+            T1=temp+T1;
+        }
+        return T1;
+    }
+  
+    
+}

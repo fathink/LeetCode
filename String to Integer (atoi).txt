@@ -1,0 +1,60 @@
+public class Solution {
+    public int myAtoi(String str) {
+        if(str.length()==0 || str==null) return 0;
+        
+        long ans=0;
+        
+        int min=(1<<31);  //最小负数
+        int max=~min;   //最大正数
+        
+        
+        char[] c=str.toCharArray();
+        
+        //考虑空格
+        int begin=0;
+        while(c[begin]==' '){
+            begin++;
+            if(begin==c.length) return 0; //全为空格情况
+        }
+        
+        //判断是否是负数
+        char flag;
+        if(c[begin] == '-'){
+            flag='-';
+            begin=begin+1;
+        }else if(c[begin]=='+'){
+            flag='+';
+            begin=begin+1;
+        }else if(c[begin]>='0' && c[begin]<='9'){
+            flag='+';
+            begin=begin;
+        }else{
+            return 0;
+        }
+        
+        
+        for(int i=begin;i<c.length;i++){
+        
+            
+            int t=c[i]-'0';
+            if(t>=0 && t<=9){
+                ans=ans*10+t;
+                if(flag=='-'&& -ans<=-max-1){
+                    return -max-1;
+                }
+                if(flag=='+' && ans>max){
+                    return max;
+                }
+        
+            }else{
+                break;
+            }
+            
+        }
+        
+        if(flag=='-'){
+            ans=-ans;
+        }
+        return (int)ans;
+    }
+}

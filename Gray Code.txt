@@ -1,0 +1,18 @@
+public class Solution {
+    public List<Integer> grayCode(int n) {
+        /* 规律是上 0  下 1
+        当n=2，分成两部分，上半部分低位为n=1时的格雷码，下半部分为n=1时的格雷码的倒序再加上最前面的1
+        时间复杂度O(2^n)
+        */
+        List<Integer> res = new ArrayList<Integer>();
+        res.add(0);
+        for(int i=0;i<n;i++){
+            int highest=1<<i;
+            int len=res.size();
+            for(int j=len-1;j>=0;j--){
+                res.add(highest+res.get(j));
+            }
+        }
+        return res;
+    }
+}

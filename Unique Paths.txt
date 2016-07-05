@@ -1,0 +1,66 @@
+public class Solution {
+    public int uniquePaths(int m, int n) {
+        /*打印所有情况
+        public static void uniquePaths(int row,int col,int[][] v){
+		int M=v.length;
+		int N=v[0].length;
+		
+		if(row == M-1 && col == N-1){
+			for(int i=0;i<M;i++){
+				for(int j=0;j<N;j++){
+					System.out.print(v[i][j]+" ");
+				}
+				System.out.println();
+			}
+			System.out.println();
+			count++;
+		}else{
+			if(row<M-1){
+				int[][] v_temp=new int[M][N];
+		 		for(int i=0;i<M;i++){
+					for(int j=0;j<N;j++){
+						v_temp[i][j]=v[i][j];
+					}
+				}
+				v_temp[row+1][col]=1;
+			    uniquePaths(row+1,col,v_temp);
+		    }
+		    if(col<N-1){
+		    	int[][] v_temp=new int[M][N];
+		 		for(int i=0;i<v.length;i++){
+					for(int j=0;j<v[0].length;j++){
+						v_temp[i][j]=v[i][j];
+					}
+				}
+		 		
+		    	v_temp[row][col+1]=1;
+			    uniquePaths(row,col+1,v_temp);
+		    }
+		}*/
+        //http://blog.csdn.net/jiadebin890724/article/details/23302123
+        
+//         int[][] v=new int[m][n];
+// 		for(int i=0;i<m;i++){
+// 			v[i][0]=1;
+// 		}
+// 		for(int j=0;j<n;j++){
+// 			v[0][j]=1;
+// 		}
+// 		for(int i=1;i<m;i++){
+// 			for(int j=1;j<n;j++){
+// 				v[i][j]=v[i-1][j]+v[i][j-1];
+// 			}
+// 		}
+// 		return v[m-1][n-1];
+       int[] res=new int[n];
+       for(int j=0;j<n;j++){
+			res[j]=1;
+		}
+       for(int i=1;i<m;i++){
+           for(int j=1;j<n;j++){
+               res[j]+=res[j-1];
+			}
+		}
+       return res[n-1];
+    }
+}

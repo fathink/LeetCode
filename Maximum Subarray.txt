@@ -1,0 +1,12 @@
+public class Solution {
+    public int maxSubArray(int[] nums) {
+        //http://www.acmerblog.com/leetcode-solution-maximum-subarray-6334.html
+        int max_fi=Integer.MIN_VALUE;
+		int fi=0;
+		for(int i=0;i<nums.length;i++){
+			fi=Math.max(fi+nums[i],nums[i]); //对于数组里的一个整数，它只有两种 选择：1、加入之前的 SubArray；2. 自己另起一个 SubArray。
+			max_fi=Math.max(max_fi, fi);
+		}
+		return max_fi;
+    }
+}

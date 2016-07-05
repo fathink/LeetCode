@@ -1,0 +1,71 @@
+public class Solution {
+    public int[][] generateMatrix(int n) {
+        int[][] G=new int[n][n];
+		if(n<=0) return G;
+		
+		int i=1;
+		int r=0,c=0;
+		G[0][0] = 1;
+		while(true){
+			if(i==n*n) break;
+			
+			//right
+			c++;
+			while(c<n){
+				if(G[r][c]==0){
+					i++;
+					G[r][c] = i;
+					c++;
+				}else{
+					break;
+				}	
+			}
+			c--;
+			
+		
+			//down
+			r++;
+			while(r<n){
+				if(G[r][c]==0){
+					i++;
+					G[r][c]=i;
+					r++;
+				}else{
+					
+					break;
+				}
+			}
+			r--;
+			
+			
+			//left
+			c--;
+			while(c>=0){
+				if(G[r][c]==0){
+					i++;
+					G[r][c] = i;
+					c--;
+				}else{
+					break;
+				}
+			}
+			c++;
+			
+			//up
+			r--;
+			while(r>=0){
+				if(G[r][c]==0){
+					i++;
+					G[r][c] = i;
+					r--;
+				}else{
+					break;
+			    }
+			}
+			r++;
+	
+		}
+		
+		return G;
+    }
+}

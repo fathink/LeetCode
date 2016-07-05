@@ -1,0 +1,26 @@
+public class Solution {
+    public boolean isHappy(int n) {
+        int sum=0,t;
+		int count=0;
+		boolean flag = false;
+		HashMap<Integer, Integer> ht=new HashMap<Integer, Integer>();
+		while(true){
+			while(n>0){
+				t = n%10;
+			    sum += t*t;
+			    n = n/10;
+		    }
+		if(sum==1) {
+				flag = true;
+				break;
+			}
+		if(ht.containsValue(sum)) break; //ÖØ¸´
+		ht.put(count, sum);
+		
+		n=sum;
+		sum=0;
+		count++;
+		}
+		return flag;
+    }
+}
